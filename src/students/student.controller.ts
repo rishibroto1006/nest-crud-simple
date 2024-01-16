@@ -8,7 +8,7 @@ export class studentController {
   @Post('create')
   async createStudent(
     @Body() studentData: Prisma.studentCreateInput,
-  ): Promise<student | null> {
+  ): Promise<student | string | null> {
     return this.studentService.createStudent(studentData);
   }
   @Get()
