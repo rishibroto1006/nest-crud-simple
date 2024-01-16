@@ -10,8 +10,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model school {
+  id       String    @id() @default(cuid())
+  name     String
+  teachers teacher[]
+}
+
+model teacher {
+  id        String    @id() @default(cuid())
+  name      String
+  school_id String
+  school    school    @relation(fields: [school_id], references: [id])
+  student   student[]
+}
+
 model student {
-  id  String  @id() @default(cuid())
-  name  String
-  age   Int
+  id      String    @id() @default(cuid())
+  name    String
+  age     Int
+  teacher teacher[]
 }
